@@ -33,7 +33,7 @@ class LoginController {
                 'error' => 0,
                 'message' => 'Welcome to Krista.',
                 'user' => [
-
+                    'name' => $user->name,
                     'email' => $user->email,
                     'role' => $role[0],
                     'uuid' => $user->uuid

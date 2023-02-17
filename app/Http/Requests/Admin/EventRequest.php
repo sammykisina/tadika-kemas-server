@@ -22,7 +22,7 @@ class EventRequest extends FormRequest {
                 'string'
             ],
             'time' => [
-                'required', 
+                'required',
                 'string'
             ]
         ];

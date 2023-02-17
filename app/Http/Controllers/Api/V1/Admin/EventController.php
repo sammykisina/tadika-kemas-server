@@ -27,14 +27,12 @@ class EventController {
         );
     }
 
-    public function store(EventRequest $request):JsonResponse {
+    public function store(EventRequest $request): JsonResponse {
         try {
-            $this->service->createEvent(eventCreateData: $request->validated());
+            $this->service->sendEventNotification(
+                event: $this->service->createEvent(eventCreateData: $request->validated())
+            );
 
-            /**
-             * TODO: Create Notification to all students
-             */
-            
             return response()->json(
                 data: [
                     'error' => 0,
@@ -55,8 +53,8 @@ class EventController {
         }
     }
 
-    public function update(EventRequest $request, Event $event):JsonResponse {
-         try {
+    public function update(EventRequest $request, Event $event): JsonResponse {
+        try {
             $this->service->updateEvent(eventUpdateData: $request->validated(), event: $event);
 
             /**
@@ -83,8 +81,8 @@ class EventController {
         }
     }
 
-    public function destroy(Event $event):JsonResponse {
-         try {
+    public function destroy(Event $event): JsonResponse {
+        try {
             $this->service->deleteEvent(event: $event);
 
             return response()->json(

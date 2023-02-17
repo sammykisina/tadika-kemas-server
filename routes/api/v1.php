@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\V1\Admin\EventController;
 use App\Http\Controllers\Api\V1\Admin\PerformanceController;
 use App\Http\Controllers\Api\V1\Admin\StudentRegistrationController;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
+use App\Http\Controllers\Api\V1\Shared\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -41,4 +42,21 @@ Route::group([
      * event management routes
      */
     Route::apiResource('events', EventController::class)->except(['show']);
+});
+
+/**
+ * routes to be accessed by all authenticated users
+ */
+Route::group([
+    'prefix' => 'users',
+    'as' => 'users:',
+    'middleware' => ['auth:sanctum']
+], function () {
+    /**
+     * profile routes
+     */
+    Route::controller(ProfileController::class)->group(function () {
+        Route::post('/profile', 'getProfile');
+        Route::post('/profile/password-reset', 'resetPassword');
+    });
 });
