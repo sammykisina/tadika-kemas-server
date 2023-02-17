@@ -15,7 +15,7 @@ return new class extends Migration {
 
             $table->string(column: 'name');
             $table->string(column: 'email')->unique();
-            $table->string(column: 'password');
+            $table->string(column: 'password'); //
 
             $table->string(column: 'cob')->nullable();
             $table->string(column: 'race')->nullable();
@@ -31,11 +31,11 @@ return new class extends Migration {
                 ->index()
                 ->constrained();
 
-            $table->timestamp(column: 'date_of_birth')->nullable();
-            $table->timestamp(column: 'enroll_date')->nullable();
+            $table->string(column: 'date_of_birth')->nullable();
+            $table->string(column: 'enroll_date')->nullable();
             $table->timestamp('email_verified_at')->nullable();
 
-            
+
             $table->rememberToken();
             $table->timestamps();
         });
