@@ -25,6 +25,8 @@ To deploy this project run
 
     2. composer install
 
-    3. php artisan serve
+    3. php artisan migrate:fresh --seed
+
+    4. php artisan serve
 
 ```
